@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+           <item android:id="@+id/Chat_Section"
+               android:title="_____"
+               android:icon="@drawable/ic_chat"/>
+            <item android:id="@+id/Status_Section"
+                android:title="_____"
+                android:icon="@drawable/ic_status"/>
+            <item android:id="@+id/Call_Section"
+                android:title="_____"
+                android:icon="@drawable/ic_call_pic"/>
+
+    <item android:title="_____"
+        android:id="@+id/Camera_Section"
+        android:icon="@drawable/ic_camera"/>
+</menu>
