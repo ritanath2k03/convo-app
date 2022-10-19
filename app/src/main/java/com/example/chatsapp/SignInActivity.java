@@ -102,8 +102,6 @@ GoogleSignInClient gsc;
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(SignInActivity.this, MainActivity.class));
         }
-
-
         gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail().build();

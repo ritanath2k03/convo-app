@@ -61,21 +61,14 @@ public class SignUpActivity extends AppCompatActivity {
                                         Users user= new Users(activitySignupBinding.UserName.getText().toString(),
                                                 activitySignupBinding.Email.getText().toString(),activitySignupBinding.UserPassword.getText().toString());
                                         String id=task.getResult().getUser().getUid();
-                                        database.getReference().child("Users").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                Intent intent =new Intent(SignUpActivity.this,MainActivity.class);
-                                                startActivity(intent);
-                                                Log.i("logic", "onComplete: ");
-
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Log.i("logic", "Failed: "+e.toString());
-
-                                            }
-                                        });
+                                        Log.d("id",id);
+                                       database.getReference().child("Users").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                           @Override
+                                           public void onComplete(@NonNull Task<Void> task) {
+                                               startActivity(new Intent(SignUpActivity.this,Chat_Fragment.class));
+                                               Log.d("data","data added in firebase");
+                                           }
+                                       });
                                         Toast.makeText(SignUpActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
 
                                     }

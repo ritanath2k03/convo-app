@@ -13,6 +13,7 @@ import com.example.chatsapp.Models.MassagesModel;
 import com.example.chatsapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ChatAdapter extends RecyclerView.Adapter{
@@ -46,7 +47,6 @@ int SENDER_VIEW_TYPE=1;
         if(massagesModels.get(position).getId().equals(FirebaseAuth.getInstance().getUid()))
         {
             return SENDER_VIEW_TYPE;
-
         }
         else
         {
@@ -60,13 +60,22 @@ int SENDER_VIEW_TYPE=1;
         MassagesModel massagesModel=massagesModels.get(position);
         if(holder.getClass()==SenderViewHolder.class){
             ((SenderViewHolder)holder).senderMsg.setText(massagesModel.getMassage());
+            ((SenderViewHolder)holder).senderTime.setText(newtime(massagesModel.getMsgTime()));
         }
         else {
             ((ReceiverViewHolder)holder).receiverMsg.setText(massagesModel.getMassage());
+            ((ReceiverViewHolder)holder).receiverTime.setText(newtime(massagesModel.getMsgTime()));
         }
 
 
     }
+
+    private String newtime(Long msgTime) {
+        SimpleDateFormat sfd = new SimpleDateFormat("HH:mm:ss");
+       String newtime = sfd.format(msgTime);
+        return newtime;
+    }
+
 
     @Override
     public int getItemCount() {
@@ -77,8 +86,10 @@ int SENDER_VIEW_TYPE=1;
 TextView receiverMsg,receiverTime;
         public ReceiverViewHolder(@NonNull View itemView) {
             super(itemView);
+
             receiverMsg=itemView.findViewById(R.id.Receiver_text);
             receiverTime=itemView.findViewById(R.id.Receiver_time);
+
         }
     }
     public class SenderViewHolder extends RecyclerView.ViewHolder{
